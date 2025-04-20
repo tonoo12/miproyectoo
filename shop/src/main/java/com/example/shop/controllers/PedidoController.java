@@ -1,6 +1,5 @@
 package com.example.shop.controller;
 
-import com.example.shop.entities.Pedido;
 import com.example.shop.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
