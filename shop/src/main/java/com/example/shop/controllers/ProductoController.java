@@ -32,7 +32,7 @@ public class ProductoController {
         return productoService.listarProductos();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/productos/{id}")
     public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
         return productoService.obtenerProductoPorId(id)
                 .map(ResponseEntity::ok)
@@ -45,8 +45,8 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-    public Producto actualizarProducto(@PathVariable Long id, @RequestBody Producto productoActualizado) {
-        return productoService.actualizarProducto(id, productoActualizado);
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto productoActualizado) {
+        return ResponseEntity.ok(productoService.actualizarProducto(id, productoActualizado));
     }
 
     @DeleteMapping("/{id}")

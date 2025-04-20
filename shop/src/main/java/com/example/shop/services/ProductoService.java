@@ -40,6 +40,7 @@ public class ProductoService {
                     producto.setDescripcionProducto(productoActualizado.getDescripcionProducto());
                     producto.setPrecioProducto(productoActualizado.getPrecioProducto());
                     producto.setStockProducto(productoActualizado.getStockProducto());
+                    producto.setCategoria(productoActualizado.getCategoria());
                     return productoRepository.save(producto);
                 })
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));

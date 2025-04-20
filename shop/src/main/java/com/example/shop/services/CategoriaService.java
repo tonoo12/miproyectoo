@@ -3,9 +3,12 @@ package com.example.shop.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.example.shop.entities.Categoria;
 import com.example.shop.repositories.CategoriaRepository;
 
+@Service
 public class CategoriaService {
     // Inyección de dependencias del repositorio de categorías
     private final CategoriaRepository categoriaRepository;
@@ -20,8 +23,8 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    // Obtener producto por ID
-    public Optional<Categoria> obtenerCategoriaPorId(long id) {
+    // Obtener categoria por ID
+    public Optional<Categoria> obtenerCategoriaPorId(Long id) {
         return categoriaRepository.findById(id);
     }
 
@@ -38,11 +41,6 @@ public class CategoriaService {
                     return categoriaRepository.save(categoria);
                 })
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
-    }
-
-    // Guardar categoria
-    public Categoria guardarCategoria(Categoria categoria) {
-        return categoriaRepository.save(categoria);
     }
 
     // Eliminar una categoria por su ID

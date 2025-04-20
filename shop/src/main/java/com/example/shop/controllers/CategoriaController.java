@@ -20,7 +20,6 @@ import com.example.shop.services.CategoriaService;
 @RequestMapping("/api/categorias")
 public class CategoriaController {
 
-    @Autowired
     private final CategoriaService categoriaService;
 
     public CategoriaController(CategoriaService categoriaService) {
@@ -33,20 +32,25 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> obtenerCategoriaPorId(@PathVariable Long id) {
+    public ResponseEntity<Categoria> obtenerCategoria(@PathVariable Long id) {
         return categoriaService.obtenerCategoriaPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Categoria crear(@RequestBody Categoria categoria) {
+    public Categoria crearCategoria(@RequestBody Categoria categoria) {
         return categoriaService.crearCategoria(categoria);
     }
 
     @PutMapping("/{id}")
-    public Categoria actualizarCategoria(@PathVariable Long id, @RequestBody Categoria categoriaActualizada) {
-        return categoriaService.actualizarCategoria(id, categoriaActualizada);
+    public ResponseEntity<Categoria> actualizarCategoria(@PathVariable Long id, @RequestBody Categoria categoria) {
+        try {
+            Categoria actualizada = categoriaService.actualizarCategoria(id, categoria);
+            return ResponseEntity.ok(actualizada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
