@@ -1,41 +1,54 @@
-package com.example.shop.controller;
+package com.example.shop.controllers;
 
-import com.example.shop.repository.PedidoRepository;
+import com.example.shop.entities.Pedido;
+import com.example.shop.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 
     @Autowired
-    private PedidoRepository pedidoRepository;
+    private PedidoService pedidoService;
 
-    // Mostrar formulario de envío (si tienes una vista directa para mostrarlo)
-    @GetMapping("/modalPagoEntrega")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("pedido", new Pedido());
-        return "formulario_pago"; // Asegúrate que exista formulario_pago.html si accedes directamente
+
+    @GetMapping
+    public List<Pedido> obtenerTodosLosPedidos() {
+
+        return pedidoService.listarPedidos();
     }
 
-    // Recibe los datos del formulario
-    @PostMapping("/procesar_pago")
-    public String procesarPago(@ModelAttribute("pedido") Pedido pedido) {
-        // Asignar fecha del pedido automáticamente
-        pedido.setFechaPedido(LocalDate.now());
 
-        // Guardar en la base de datos
-        pedidoRepository.save(pedido);
+    @PostMapping
+    public ResponseEntity<Pedido> crearPedido(@RequestBody Pedido pedido) {
 
-        // Redirigir a página de confirmación
-        return "redirect:/confirmacion";
+        Pedido nuevoPedido = pedidoService.crearPedido(pedido);
+
+        return ResponseEntity.status(201).body(nuevoPedido);
     }
 
-    // Página de confirmación
-    @GetMapping("/confirmacion")
-    public String mostrarConfirmacion() {
-        return "confirmacion"; // Debes tener una vista confirmacion.html
+    // Obtener un pedido por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> obtenerPedidoPorId(@PathVariable Long id) {
+
+        return pedidoService.obtenerPedidoPorId(id)
+                .map(ResponseEntity::ok) 
+                .orElse(ResponseEntity.notFound().build()); 
+    }
+
+    // Eliminar un pedido
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarPedido(@PathVariable Long id) {
+
+        boolean eliminado = pedidoService.eliminarPedido(id);
+        if (eliminado) {
+            return ResponseEntity.noContent().build(); 
+        } else {
+            return ResponseEntity.notFound().build(); 
+        }
     }
 }
