@@ -23,7 +23,7 @@ public class SecurityConfig {
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
-                                                "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404")
+                                                "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos")
                                                 .permitAll())
                                                 .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
         return http.build();
