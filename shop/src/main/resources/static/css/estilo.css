@@ -5,15 +5,32 @@ body {
 }
 
 header {
-    background-color: #34495E;
-    color: #ffffeb;
-    padding: 0 15px;
     display: flex;
-    align-items: center;
-    flex-direction: row;
-    position: relative;
+    flex-direction: column;
 }
 
+.header-top {
+    background-color: #34495e; /* azul oscuro */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+.main-nav {
+    background-color: #e74c3c; /* rojo */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.main-nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
 header .icon {
     display: none;
     padding-right: 15px;
@@ -47,20 +64,7 @@ nav {
     transition: background-color 0.3s ease-in-out;
 }
 
-nav a {
-    color: #ECF0F1; 
-    text-decoration: none;
-    margin: 0 20px; 
-    font-size: 18px; 
-    font-weight: bold;
-    position: relative;
-    transition: color 0.3s ease-in-out; 
-}
 
-nav a:hover {
-    color: #E74C3C; 
-    text-decoration: none; 
-}
 
 .wrapper, .wrapper-layer {
     display: none;
@@ -192,6 +196,7 @@ nav a:hover {
     width: 100%;
     margin: auto;
     overflow: hidden;
+    padding-top: 10px;
 }
 
 .product {
