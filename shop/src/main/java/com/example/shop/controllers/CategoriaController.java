@@ -19,7 +19,7 @@ import com.example.shop.services.CategoriaService;
 @RestController
 @RequestMapping("/api/categorias")
 public class CategoriaController {
-
+    @Autowired
     private final CategoriaService categoriaService;
 
     public CategoriaController(CategoriaService categoriaService) {

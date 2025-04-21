@@ -19,14 +19,21 @@ public class SecurityConfig {
 
     @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http
-                                .csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
-                                                "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos",
-                                                "/api/categorias")
-                                                .permitAll())
-                                                .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
+        //         http.csrf(csrf -> csrf.disable())
+        //                         .authorizeHttpRequests(auth -> auth
+        //                                         .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
+        //                                         "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos",
+        //                                         "/api/categorias")
+        //                                         .permitAll())
+        //                                         .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
+        // return http.build();
+        
+  
+        http.csrf().disable()
+            .authorizeHttpRequests()
+            .anyRequest().permitAll();
+
         return http.build();
+    
     }
 }

@@ -1,6 +1,7 @@
 package com.example.shop.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +33,11 @@ public class ProductoController {
         return productoService.listarProductos();
     }
 
-    @GetMapping("/productos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
-        return productoService.obtenerProductoPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Optional<Producto> producto = productoService.obtenerProductoPorId(id);
+        return producto.map(ResponseEntity::ok)
+                       .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
