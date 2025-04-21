@@ -19,6 +19,8 @@ public class SecurityConfig {
 
     @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        // Configuración de seguridad
         //         http.csrf(csrf -> csrf.disable())
         //                         .authorizeHttpRequests(auth -> auth
         //                                         .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
@@ -28,7 +30,7 @@ public class SecurityConfig {
         //                                         .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
         // return http.build();
         
-  
+        // Configuracion para insertar sin que salga error 403(prohibido)
         http.csrf().disable()
             .authorizeHttpRequests()
             .anyRequest().permitAll();
