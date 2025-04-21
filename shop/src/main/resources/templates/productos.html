@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    
+<head th:replace="~{components/fragments :: cabecera('Toke Inka - Producto')}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header th:replace="~{components/fragments :: header}"></header>
+    <main class="flex-grow-1 py-5">
+        <div class="container">
+            <!-- Título de la sección -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center fw-bold">Nuestros Productos</h2>
+                    <hr class="mx-auto" style="width: 100px;">
+                </div>
+            </div>
+
+            <!-- Filtros y Carrito -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscarProducto" placeholder="Buscar productos..."
+                            onkeyup="filtrarProductos()">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button class="btn btn-primary position-relative" data-bs-toggle="offcanvas"
+                        data-bs-target="#carritoOffcanvas">
+                        <i class="bi bi-cart3"></i> Carrito
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                            <span class="visually-hidden">productos en el carrito</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="productosLista">
+
+                <div th:each="p : ${productos}" class="col producto">
+                    <div class="card h-100 shadow-sm">
+                        <img src="/api/placeholder/300/200" class="card-img-top" th:alt="${p.nombreProducto}">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
+                            <p class="card-text" th:text="${p.descripcionProducto}"></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0" th:text="'S/. ' + ${p.precioProducto}"></span>
+                                <button class="btn btn-primary btn-sm" onclick="agregarAlCarrito(this)"
+                                    th:data-id="${p.idProducto}" th:data-nombre="${p.nombreProducto}"
+                                    th:data-precio="${p.precioProducto}">
+                                    <i class="bi bi-cart-plus"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </main>
+    <footer th:replace="~{components/fragments :: footer}"></footer>
+</body>
+
+</html>
