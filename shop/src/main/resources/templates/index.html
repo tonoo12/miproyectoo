@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head th:replace="~{components/fragments :: cabecera('Toke Inka: La chispa que enciende tu estilo')}">
+
+<head th:replace="~{components/fragments :: cabecera('Toke Inka: La chispa que enciende tu estilo')}">
     <style>
         .modal-content .payment-buttons {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
         }
+
         .modal-content .payment-buttons button {
             margin: 5px;
         }
     </style>
- 
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEEEWBD00R"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-NEEEWBD00R');
     </script>
 </head>
+
 <body>
     <header th:replace="~{components/fragments :: header}"></header>
 
     <div class="container">
         <div class="principal">
-            <img src="../images/img221.png" alt="imagenp" >          
+            <img src="../images/cister.jpg" alt="cister">
         </div>
         <div class="barra">
             <h2>NOVEDADES</h2>
@@ -39,7 +42,8 @@
             <h3>Camisero Azul</h3>
             <p>Sise M</p>
             <p>s./ 70.00</p>
-            <button data-product="Producto 1c" data-description="camisero_azul " data-price="70.15" data-codigo="CAM-003">Agregar al carrito</button>
+            <button data-product="Producto 1c" data-description="camisero_azul " data-price="70.15"
+                data-codigo="CAM-003">Agregar al carrito</button>
         </div>
         <div class="product">
             <div class="image">
@@ -48,7 +52,8 @@
             <h3>Polo cabeza clava</h3>
             <p>Size L</p>
             <p>s./ 60.00</p>
-            <button data-product="Polo blanco" data-description="Polo cabeza clava" data-price="60" data-codigo="POL-002">Agregar al carrito</button>
+            <button data-product="Polo blanco" data-description="Polo cabeza clava" data-price="60"
+                data-codigo="POL-002">Agregar al carrito</button>
         </div>
         <div class="product">
             <div class="image">
@@ -57,7 +62,8 @@
             <h3>Polera estampada marron</h3>
             <p>Size S</p>
             <p>s./ 70.00</p>
-            <button data-product="Producto 3pl" data-description="Polera marron inca" data-price="70" data-codigo="POL-003">Agregar al carrito</button>
+            <button data-product="Producto 3pl" data-description="Polera marron inca" data-price="70"
+                data-codigo="POL-003">Agregar al carrito</button>
         </div>
         <div class="product">
             <div class="image">
@@ -65,7 +71,8 @@
             </div>
             <h3>Gorra Dios Inti</h3>
             <p>S/.70.00</p>
-            <button data-product="Producto 1g" data-description="Gorra Dios Inti" data-price="70.00" data-codigo="GORRA-001">Agregar al carrito</button>
+            <button data-product="Producto 1g" data-description="Gorra Dios Inti" data-price="70.00"
+                data-codigo="GORRA-001">Agregar al carrito</button>
         </div>
         <div class="product">
             <div class="image">
@@ -74,7 +81,8 @@
             <h3>Zapatilla Urban negro yana</h3>
             <p>Size 9</p>
             <p>s./390.00</p>
-            <button data-product="Producto 2z" data-description="Zapatilla Urban negro yana" data-price="390.00" data-codigo="ZAP-005">Agregar al carrito</button> 
+            <button data-product="Producto 2z" data-description="Zapatilla Urban negro yana" data-price="390.00"
+                data-codigo="ZAP-005">Agregar al carrito</button>
         </div>
         <div class="product">
             <div class="image">
@@ -83,7 +91,8 @@
             <h3>Jogger fit Azul</h3>
             <p>Size M</p>
             <p>s./129.00</p>
-            <button data-product="Producto 1p" data-description="Jogger fit azul" data-price="129.00" data-codigo="PANT-001">Agregar al carrito</button> 
+            <button data-product="Producto 1p" data-description="Jogger fit azul" data-price="129.00"
+                data-codigo="PANT-001">Agregar al carrito</button>
         </div>
 
         <div class="product">
@@ -93,46 +102,49 @@
             <h3>Zapatilla Urban high top negro y plomo</h3>
             <p>Size M</p>
             <p>s./90.00</p>
-            <button data-product="Producto 6z" data-description="Zapatilla Urban high top negro y plomo" data-price="190.00" data-codigo="ZAP-006">Agregar al carrito</button>
+            <button data-product="Producto 6z" data-description="Zapatilla Urban high top negro y plomo"
+                data-price="190.00" data-codigo="ZAP-006">Agregar al carrito</button>
         </div>
 
         <div class="product">
             <div class="image">
-           <img src="../images/polo_blanco_rayasverdes.jpg" alt="Catálogo zapatillas2">
+                <img src="../images/polo_blanco_rayasverdes.jpg" alt="Catálogo zapatillas2">
             </div>
             <h3>Polo killa Dept Blanco</h3>
             <p>Size M</p>
             <p>s./150.00</p>
-            <button data-product="Polo killa Dept Blanco" data-description="Polo killa Dept Blanco" data-price="150.00" data-code="POL-004">Agregar al carrito</button> 
+            <button data-product="Polo killa Dept Blanco" data-description="Polo killa Dept Blanco" data-price="150.00"
+                data-code="POL-004">Agregar al carrito</button>
         </div>
 
-         <div class="product">
+        <div class="product">
             <div class="image">
                 <img src="../images/gorra_machupichu.jpg" alt="Producto 6c">
             </div>
             <h3>Gorra Machu Picchu</h3>
-           
+
             <p>S/. 80.00</p>
-            <button data-product="Producto 2g" data-description="Gorra Machu Picchu" data-price="80.00" data-codigo="GORRA-002">Agregar al carrito</button>
+            <button data-product="Producto 2g" data-description="Gorra Machu Picchu" data-price="80.00"
+                data-codigo="GORRA-002">Agregar al carrito</button>
         </div>
     </div>
     <div class="wrapper-layer">
         <div class="layer">
             <span class="close-cart">&times;</span>
             <table class="shopping">
-              <thead>
-                <th>Producto</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Eliminar</th>                
-            </thead>
+                <thead>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Eliminar</th>
+                </thead>
                 <tbody></tbody>
             </table>
             <button id="btnPagar">Proceder a pago</button>
         </div>
     </div>
-    
+
     <div id="modalOpcionesPago" class="modal" style="display: none;">
         <div class="modal-content">
             <button id="btnCerrarOpcionesPago" class="btnCerrarModal"><i class="fas fa-times"></i></button>
@@ -140,9 +152,9 @@
             <div id="paypal-button-container"></div>
         </div>
     </div>
-    
-    
-    
+
+
+
     <!-- Modal de Datos de Envio -->
     <div id="modalPagoEntrega" class="modal" style="display:none;">
         <div class="modal-content">
@@ -161,7 +173,7 @@
                     <label for="city">Ciudad:</label>
                     <input type="text" id="city" name="city" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="zipcode">Código Postal:</label>
                     <input type="text" id="zipcode" name="zipcode" required>
@@ -177,21 +189,23 @@
                 <div class="form-group">
                     <button type="submit" class="btn-submit">Confirmar</button>
                 </div>
-            </form>        
+            </form>
         </div>
     </div>
 
-   
-    
+
+
 
     <footer th:replace="~{components/fragments :: footer}"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=AYhM7Gub_jwpY34KhU90XB7F6AlZOCZmitUmdZ4qjZTzkXFF6L-KXjBpJLXeA8gVDs0zYvjaiBADujQQ"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AYhM7Gub_jwpY34KhU90XB7F6AlZOCZmitUmdZ4qjZTzkXFF6L-KXjBpJLXeA8gVDs0zYvjaiBADujQQ"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

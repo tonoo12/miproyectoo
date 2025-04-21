@@ -166,19 +166,18 @@ nav {
 }
 
 .principal {
-    width: 30%; 
+    width: 60%; 
     display: flex;
     justify-content: center; 
     align-items: center; 
     margin: 0 auto; 
+    padding-bottom: 10px;
 }
 
 .principal img {
     width: 100%; 
     height: auto; 
     display: block;
-    border: 3px solid #34495E; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
 } 
 
