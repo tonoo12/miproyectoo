@@ -695,3 +695,7 @@ button:hover {
     background-color: #0056b3;
 }
 
+.img-fluid {
+    width: 85px;
+    height: 60px;
+}
