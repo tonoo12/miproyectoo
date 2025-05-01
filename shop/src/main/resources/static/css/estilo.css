@@ -699,3 +699,23 @@ button:hover {
     width: 85px;
     height: 60px;
 }
+
+.modal-content .payment-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.modal-content .payment-buttons button {
+    margin: 5px;
+}
+
+.banner {
+    width: auto;
+    height: auto;
+}
+
+.opacidad, img{
+    opacity: 0.7;
+    color: rgb(0,0,0, 0.5);
+}

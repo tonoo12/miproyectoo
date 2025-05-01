@@ -2,17 +2,6 @@
 <html lang="es">
 
 <head th:replace="~{components/fragments :: cabecera('Toke Inka: La chispa que enciende tu estilo')}">
-    <style>
-        .modal-content .payment-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .modal-content .payment-buttons button {
-            margin: 5px;
-        }
-    </style>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEEEWBD00R"></script>
@@ -28,10 +17,23 @@
 <body>
     <header th:replace="~{components/fragments :: header}"></header>
 
-    <div class="container">
-        <div class="principal">
-            <img src="../images/cister.jpg" alt="cister">
+    <div class="position-relative">
+        <div class="opacidad">
+            <img src="https://d1ih8jugeo2m5m.cloudfront.net/2024/08/ideas_para_tienda_de_ropa_infantil-1200x685.jpg" alt="Logo" 
+        class="w-100 h-auto img-fluid" />
         </div>
+        
+        <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+            <div class="w-auto h-auto">
+                <h1>Toke Inka</h1>
+                <p>La chispa que enciende tu estilo</p>
+            </div>
+            <button>
+                <a href="">a</a>
+            </button>
+        </div>
+    </div>
+    <div class="container">
         <div class="barra">
             <h2>NOVEDADES</h2>
         </div>
