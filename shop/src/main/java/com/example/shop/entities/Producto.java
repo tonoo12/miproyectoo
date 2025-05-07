@@ -33,6 +33,9 @@ public class Producto {
     @Column(name = "stock_producto")
     private int stockProducto;
 
+    @Column(name = "imagen_producto")
+    private String imagenProducto;
+    
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     @JsonIgnoreProperties({"productos"})

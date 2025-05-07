@@ -43,13 +43,13 @@
 
                 <div th:each="p : ${productos}" class="col producto">
                     <div class="card h-100 shadow-sm">
-                        <img src="/api/placeholder/300/200" class="card-img-top" th:alt="${p.nombreProducto}">
+                        <img src="/images/camisero_azul.jpg" class="card-img-top" th:alt="${p.nombreProducto}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
                             <p class="card-text" th:text="${p.descripcionProducto}"></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="h5 mb-0" th:text="'S/. ' + ${p.precioProducto}"></span>
-                                <button class="btn btn-primary btn-sm" onclick="agregarAlCarrito(this)"
+                                <button class="btn btn-index btn-sm" onclick="agregarAlCarrito(this)"
                                     th:data-id="${p.idProducto}" th:data-nombre="${p.nombreProducto}"
                                     th:data-precio="${p.precioProducto}">
                                     <i class="bi bi-cart-plus"></i> Agregar
