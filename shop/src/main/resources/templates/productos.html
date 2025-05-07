@@ -43,7 +43,8 @@
 
                 <div th:each="p : ${productos}" class="col producto">
                     <div class="card h-100 shadow-sm">
-                        <img src="/images/camisero_azul.jpg" class="card-img-top" th:alt="${p.nombreProducto}">
+                        <img th:src="@{/images/{img}(img=${p.imagenProducto})}" class="card-img-top object-fit-cover" 
+                        style="height: 400px; width: 100%;" th:alt="${p.nombreProducto}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
                             <p class="card-text" th:text="${p.descripcionProducto}"></p>
