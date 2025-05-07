@@ -711,7 +711,7 @@ button:hover {
 }
 
 .hero {
-    height: 600px;
+    height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                 url('https://d1ih8jugeo2m5m.cloudfront.net/2024/08/ideas_para_tienda_de_ropa_infantil-1200x685.jpg');
     background-size: cover;
