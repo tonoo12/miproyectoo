@@ -2,6 +2,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -251,6 +254,7 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    margin-top: auto;
 }
 
 table thead th, table tbody td {
@@ -368,12 +372,12 @@ button[type="submit"]:hover {
     margin-bottom: -4px;
 }
 
-.adv {
+/* Nosotros */
+/* .adv {
     display: flex;
     justify-content: space-between;
     color: #000000;
-}
-
+} */
 .cuadro {
     background-color: #7F8C8D;
 }
