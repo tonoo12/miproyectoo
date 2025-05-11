@@ -8,10 +8,10 @@
     <header th:replace="~{components/fragments :: header}"></header>
 
     <!-- Quienes somos -->
-    <section class="px-4 pb-4 pt-4">
+    <section class="px-md-5 px-4 pb-4 pt-4">
         <p class="fw-bold fs-4 d-flex justify-content-center">¿Quienes somos?</p>
         <div class="d-flex container-fluid justify-content-center align-items-center px-md-5">
-            <div class="w-md-50 w-100 h-auto d-flex flex-column justify-content-center pe-md-3">
+            <div class="d-flex flex-column justify-content-center pe-md-3" style="width: 720px;">
                 <p class="fs-5 text-lg-start text-center">Toke Inka es una empresa dedicada a la venta de
                     productos de alta
                     calidad
@@ -23,7 +23,7 @@
                     productos
                     innovadores y de vanguardia que se adapten a sus necesidades y gustos.</p>
             </div>
-            <div class="w-lg-50 w-25 h-50 d-flex justify-content-center align-items-center d-none d-lg-block ps-3">
+            <div class=" d-flex justify-content-center align-items-center d-none d-lg-block ps-3">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2OZl8DSJ8BZHfeUGS-vfbmvUHDygO_D-YoQ&s"
                     alt="Toke Inka" class="img-fluid" style="width: auto; height: auto;">
             </div>
@@ -31,27 +31,35 @@
     </section>
 
     <!-- Mision y vision -->
-    <section class="px-4 pb-4 pt-4 " style="background-color: #c4c4c4;">
-        <div class="d-flex flex-column flex-md-row container-fluid justify-content-center align-items-start px-md-5 gap-4">
-            <div class="w-md-50 w-100 h-auto d-flex flex-column justify-content-center">
-                <div class="fs-5 text-lg-start text-center d-flex flex-column justify-content-center">
-                    <p class="fw-bold d-flex justify-content-center align-items-center">Misión</p>
-                    <!-- md4 -->
-                    <p class="px-lg-5 text-md-start px-md-4" >Ofrecer productos que reflejen la riqueza cultural y natural del Perú, combinando
-                        tradición y modernidad para brindar experiencias únicas de sabor y calidad a nuestros clientes,
-                        promoviendo al mismo tiempo el desarrollo sostenible y el orgullo por nuestras raíces</p>
+    <section class="px-2 pb-4 pt-4" style="background-color: #c4c4c4;">
+        <div class="container">
+            <div class="row justify-content-center gap-5">
+                <div class="col-12 col-md-4">
+                    <div class="fs-5 text-center text-md-start">
+                        <p class="fw-bold text-center">Misión</p>
+                        <p>
+                            Ofrecer productos que reflejen la riqueza cultural y natural del Perú, combinando
+                            tradición y modernidad para brindar experiencias únicas de sabor y calidad a nuestros
+                            clientes,
+                            promoviendo al mismo tiempo el desarrollo sostenible y el orgullo por nuestras raíces.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="w-md-50 w-100 h-auto d-flex flex-column justify-content-center">
-                <div class="fs-5 text-lg-start text-center d-flex flex-column justify-content-center">
-                    <p class="fw-bold d-flex justify-content-center align-items-center">Visión</p>
-                    <p class="px-lg-5 text-md-start px-md-4">Ser reconocidos a nivel nacional e internacional como una marca líder que representa
-                        con autenticidad el espíritu del Perú, destacando por su innovación, compromiso con la calidad y
-                        respeto por nuestras tradiciones ancestrales.</p>
+                <div class="col-12 col-md-4">
+                    <div class="fs-5 text-center text-md-start">
+                        <p class="fw-bold text-center">Visión</p>
+                        <p>
+                            Ser reconocidos a nivel nacional e internacional como una marca líder que representa
+                            con autenticidad el espíritu del Perú, destacando por su innovación, compromiso con la
+                            calidad y
+                            respeto por nuestras tradiciones ancestrales.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <footer th:replace="~{components/fragments :: footer}"></footer>
 
