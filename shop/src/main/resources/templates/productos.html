@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-    
+
 <head th:replace="~{components/fragments :: cabecera('Toke Inka - Producto')}">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <header th:replace="~{components/fragments :: header}"></header>
+    
     <main class="flex-grow-1 py-5">
         <div class="container">
             <!-- Título de la sección -->
@@ -17,17 +18,19 @@
             </div>
 
             <!-- Filtros y Carrito -->
-            <div class="row mb-4">
+            <div class="row mb-4 g-2">
                 <div class="col-md-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="buscarProducto" placeholder="Buscar productos...">
-                        <button class="btn btn-outline-secondary " type="button">
+                    <form class="d-flex gap-1">
+                        <input class="form-control w-100" type="Buscar Productos..." placeholder="Buscar productos por nombre..." aria-label="Search"/>
+                        <button class="btn btn-index d-flex justify-content-center align-items-center gap-2 px-3 py-lg-3 py-2" type="button">
                             <i class="bi bi-search"></i>
+                            Buscar
                         </button>
-                    </div>
+                    </form>
                 </div>
-                <div class="col-md-6 text-end">
-                    <button>
+                <div class="col-md-6 text-md-end ">
+                    <button class="btn btn-index px-3 py-lg-3 py-2 gap-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#filtrosModal">
                         <i class="bi bi-funnel"></i>
                         Filtrar
                     </button>
@@ -35,19 +38,17 @@
             </div>
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="productosLista">
-
                 <div th:each="p : ${productos}" class="col producto">
                     <div class="card h-100 shadow-sm">
-                        <img th:src="@{/images/{img}(img=${p.imagenProducto})}" class="card-img-top object-fit-cover" 
-                        style="height: 400px; width: 100%;" th:alt="${p.nombreProducto}">
+                        <img th:src="@{/images/{img}(img=${p.imagenProducto})}" class="card-img-top object-fit-cover"
+                            style="height: 400px; width: 100%;" th:alt="${p.nombreProducto}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
                             <p class="card-text" th:text="${p.descripcionProducto}"></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="h5 mb-0" th:text="'S/. ' + ${p.precioProducto}"></span>
-                                <button class="btn btn-index btn-sm"
-                                    th:data-id="${p.idProducto}" th:data-nombre="${p.nombreProducto}"
-                                    th:data-precio="${p.precioProducto}">
+                                <button class="btn btn-index btn-sm" th:data-id="${p.idProducto}"
+                                    th:data-nombre="${p.nombreProducto}" th:data-precio="${p.precioProducto}">
                                     <i class="bi bi-cart-plus"></i> Agregar
                                 </button>
                             </div>
