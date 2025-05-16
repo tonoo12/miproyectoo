@@ -21,21 +21,21 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         // Configuración de seguridad
-                http.csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
-                                                "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos",
-                                                "/api/categorias", "/productos", "/nosotros", "/login")
-                                                .permitAll())
-                                                .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
-        return http.build();
+        //         http.csrf(csrf -> csrf.disable())
+        //                         .authorizeHttpRequests(auth -> auth
+        //                                         .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
+        //                                         "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos",
+        //                                         "/api/categorias", "/productos", "/nosotros", "/login", "/productos/filtrar")
+        //                                         .permitAll())
+        //                                         .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
+        // return http.build();
         
         // Configuracion para insertar sin que salga error 403(prohibido)
-        // http.csrf().disable()
-        //     .authorizeHttpRequests()
-        //     .anyRequest().permitAll();
+        http.csrf().disable()
+            .authorizeHttpRequests()
+            .anyRequest().permitAll();
 
-        // return http.build();
+        return http.build();
     
     }
 }

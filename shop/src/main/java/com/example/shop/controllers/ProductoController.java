@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.shop.entities.Producto;
+import com.example.shop.repositories.ProductoRepository;
 import com.example.shop.services.ProductoService;
 
 import org.springframework.ui.Model; // Importación corregida
@@ -23,13 +25,16 @@ import org.springframework.ui.Model; // Importación corregida
 @RequestMapping("/productos")
 public class ProductoController {
 
+    private final ProductoRepository productoRepository;
+
     @Autowired
     private final ProductoService productoService;
 
-    public ProductoController(ProductoService productoService) {
+    public ProductoController(ProductoService productoService, ProductoRepository productoRepository) {
         this.productoService = productoService;
+        this.productoRepository = productoRepository;
     }
-    
+
     @GetMapping
     public String listarProductos(Model model) {
         List<Producto> productos = productoService.listarProductos();
@@ -41,7 +46,21 @@ public class ProductoController {
     public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
         Optional<Producto> producto = productoService.obtenerProductoPorId(id);
         return producto.map(ResponseEntity::ok)
-                       .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/filtrar")
+    public String filtrarProductos(@RequestParam(required = false) String filtro, Model model) {
+        List<Producto> productos;
+        if (filtro != null && !filtro.isEmpty()) {
+            productos = productoRepository
+                    .findByNombreProductoContainingIgnoreCaseOrCategoria_NombreCategoriaContainingIgnoreCase(filtro,
+                            filtro);
+        } else {
+            productos = productoRepository.findAll();
+        }
+        model.addAttribute("productos", productos);
+        return "productos"; 
     }
 
     @PostMapping
@@ -50,7 +69,8 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto productoActualizado) {
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,
+            @RequestBody Producto productoActualizado) {
         return ResponseEntity.ok(productoService.actualizarProducto(id, productoActualizado));
     }
 

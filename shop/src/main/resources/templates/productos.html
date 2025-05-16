@@ -19,17 +19,21 @@
 
             <!-- Busqueda y Filtros -->
             <div class="row mb-4 g-2">
-                <div class="col-md-6">
-                    <form class="d-flex gap-1">
-                        <input class="form-control w-100" type="search" placeholder="Buscar productos por nombre..." aria-label="Search" />
-                        <button class="btn btn-index d-flex justify-content-center align-items-center gap-2 px-3 py-lg-3 py-2" type="button">
+                <div class="col-md-6 text-md-start">
+                    <form class="d-flex gap-1" th:action="@{/productos/filtrar}" method="get">
+                        <input class="form-control w-100" type="search" placeholder="Buscar productos por nombre..."
+                            aria-label="Search" th:value="${param.filtro}"  />
+                        <button
+                            class="btn btn-index d-flex justify-content-center align-items-center gap-2 px-3 py-lg-3 py-2"
+                            type="submit" title="Buscar">
                             <i class="bi bi-search"></i>
                             Buscar
                         </button>
                     </form>
                 </div>
+
                 <div class="col-md-6 text-md-end ">
-                    <button class="btn btn-index px-3 py-lg-3 py-2 gap-2" type="button" data-bs-toggle="modal"
+                    <button class="btn btn-index gap-2 px-3 py-lg-3 py-2" type="button" data-bs-toggle="modal"
                         data-bs-target="#filtrosModal">
                         <i class="bi bi-funnel"></i>
                         Filtrar
