@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{components/fragments :: cabecera('Toke Inka - contactanos')}">
+    <title>Contáctanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10">
+    <header th:replace="~{components/fragments :: header}"></header>
+    <div class="max-w-xl mx-auto bg-white p-8 rounded shadow">
+        <h1 class="text-2xl font-bold mb-6">Contáctanos</h1>
+        <form th:action="@{/contactanos}" method="post" th:object="${contacto}" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" th:field="*{nombre}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                <input type="email" th:field="*{correo}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Mensaje</label>
+                <textarea th:field="*{mensaje}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Enviar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
