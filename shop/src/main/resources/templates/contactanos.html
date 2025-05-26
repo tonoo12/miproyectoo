@@ -1,30 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{components/fragments :: cabecera('Toke Inka - contactanos')}">
-    <title>Contáctanos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{components/fragments :: cabecera('Toke Inka - Contáctanos')}">
+  <title>Contáctanos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 py-10">
-    <header th:replace="~{components/fragments :: header}"></header>
-    <div class="max-w-xl mx-auto bg-white p-8 rounded shadow">
-        <h1 class="text-2xl font-bold mb-6">Contáctanos</h1>
-        <form th:action="@{/contactanos}" method="post" th:object="${contacto}" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Nombre</label>
-                <input type="text" th:field="*{nombre}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-                <input type="email" th:field="*{correo}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Mensaje</label>
-                <textarea th:field="*{mensaje}" required class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></textarea>
-            </div>
-            <div>
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Enviar</button>
-            </div>
-        </form>
-    </div>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <header th:replace="~{components/fragments :: header}"></header>
+
+  <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Contenedor principal más angosto -->
+    <section class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+      <h1 class="text-4xl font-extrabold text-indigo-700 mb-6 text-center">Contáctanos</h1>
+      <p class="text-center text-gray-600 mb-8">Estamos aquí para ayudarte. Completa el formulario y te responderemos pronto.</p>
+
+      <form th:action="@{/contactanos}" method="post" th:object="${contacto}" class="space-y-6">
+        <div class="flex justify-start items-center space-x-4">
+          <label for="nombre" class="block text-sm font-semibold text-gray-700 w-24">Nombre</label>
+          <!-- Campo nombre más corto -->
+          <input
+            type="text"
+            id="nombre"
+            th:field="*{nombre}"
+            required
+            placeholder="Tu nombre"
+            class="flex-grow px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label for="correo" class="block text-sm font-semibold text-gray-700 mb-1">Correo electrónico</label>
+          <!-- Campo correo ancho completo -->
+          <input
+            type="email"
+            id="correo"
+            th:field="*{correo}"
+            required
+            placeholder="ejemplo@correo.com"
+            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label for="mensaje" class="block text-sm font-semibold text-gray-700 mb-1">Mensaje</label>
+          <!-- Campo mensaje ancho completo -->
+          <textarea
+            id="mensaje"
+            th:field="*{mensaje}"
+            rows="5"
+            required
+            placeholder="Escribe tu mensaje aquí..."
+            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-md shadow-md transition"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer th:replace="~{components/fragments :: footer}"></footer>
 </body>
 </html>
+
