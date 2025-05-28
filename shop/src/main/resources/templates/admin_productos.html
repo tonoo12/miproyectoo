@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <h1>Productos</h1>
+    <a th:href="@{/admin/productos/nuevo}" class="btn">Agregar Nuevo</a>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Talla</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="producto : ${productos}">
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td th:text="${producto.talla}"></td>
+            <td>
+                <a th:href="@{'/admin/productos/editar/' + ${producto.id}}">Editar</a>
+                |
+                <a th:href="@{'/admin/productos/eliminar/' + ${producto.id}}" 
+                   onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
