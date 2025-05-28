@@ -55,6 +55,9 @@ $(document).ready(function() {
         $('.shopping tbody').append('<tr><td>Total</td><td></td><td></td><td>S/' + calcularTotal() + '</td><td></td></tr>');
     }
 
+
+
+    
     function inicializarBotonPayPal() {
         if ($('#paypal-button-container').children().length === 0) {
             paypal.Buttons({

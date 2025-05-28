@@ -1,29 +1,29 @@
 package com.example.shop.entities;
 
-public class contacto {
-    private String nombre;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "contactos")
+public class Contacto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_contacto")
+    private long idContacto;
+
+    @Column(name = "nombre")
+    private String nombreContacto;
+
+    @Column(name = "correo")
     private String correo;
+
+    @Column(name = "mensaje")
     private String mensaje;
-
-    // Getters y Setters
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
 }
