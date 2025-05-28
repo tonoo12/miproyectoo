@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Productos</h1>
-    <a th:href="@{/admin/productos/nuevo}" class="btn">Agregar Nuevo</a>
+    <a th:href="@{/admin/nuevo}" class="btn">Agregar Nuevo</a>
     <table>
         <tr>
             <th>Nombre</th>
@@ -15,13 +15,13 @@
             <th>Acciones</th>
         </tr>
         <tr th:each="producto : ${productos}">
-            <td th:text="${producto.nombre}"></td>
-            <td th:text="${producto.precio}"></td>
-            <td th:text="${producto.talla}"></td>
+            <td th:text="${producto.nombreProducto}"></td>
+            <td th:text="${producto.precioProducto}"></td>
+            <td th:text="${producto.descripcionProducto}"></td>
             <td>
-                <a th:href="@{'/admin/productos/editar/' + ${producto.id}}">Editar</a>
+                <a th:href="@{'/admin/editar/' + ${producto.idProducto}}">Editar</a>
                 |
-                <a th:href="@{'/admin/productos/eliminar/' + ${producto.id}}" 
+                <a th:href="@{'/admin/eliminar/' + ${producto.idProducto}}" 
                    onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
             </td>
         </tr>

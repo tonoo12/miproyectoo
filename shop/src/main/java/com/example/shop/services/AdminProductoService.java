@@ -1,5 +1,14 @@
+package com.example.shop.services;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.shop.entities.Producto;
+import com.example.shop.repositories.ProductoRepository;
+
 @Service
-public class ProductoService {
+public class AdminProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
