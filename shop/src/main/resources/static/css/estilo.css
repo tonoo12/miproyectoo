@@ -845,3 +845,12 @@ button {
 button:hover {
     background-color: #c9302c;
 }
+
+/* ancorHover en panel de admin */
+
+.botonAncor{
+    color: white;
+}
+.botonAncor:hover{
+    color: rgb(201, 201, 201);
+}

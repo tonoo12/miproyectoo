@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Administrar Productos</title>
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
-</head>
+<html lang="es">
+
+<head th:replace="~{components/fragments :: cabecera('Panel Administrador')}"></head>
+
 <body>
-    <h1>Productos</h1>
-    <a th:href="@{/admin/nuevo}" class="btn">Agregar Nuevo</a>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Talla</th>
-            <th>Acciones</th>
-        </tr>
-        <tr th:each="producto : ${productos}">
-            <td th:text="${producto.nombreProducto}"></td>
-            <td th:text="${producto.precioProducto}"></td>
-            <td th:text="${producto.descripcionProducto}"></td>
-            <td>
-                <a th:href="@{'/admin/editar/' + ${producto.idProducto}}">Editar</a>
-                |
-                <a th:href="@{'/admin/eliminar/' + ${producto.idProducto}}" 
-                   onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
-            </td>
-        </tr>
-    </table>
+    <div class="d-flex gap-3">
+        <section class="bg-dark text-white" style="height: 100vh;">
+            <div class="px-4 py-4 mx-auto">
+                <img src="https://tokeinka.pe/cdn/shop/files/AF_IMAGOTIPO_CON_ESLOGAN_-_BLANCO_-_3.png?v=1694699606&width=1891"
+                    alt="Logo" class="" style="width: 145px; height: 120px;">
+            </div>
+            <hr class="text-white mx-auto" style="width: 90%;">
+            <div class="mx-auto fs-6">
+                <a href="#" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
+                    <i class="bi bi-sunglasses"></i>
+                    <p>Productos</p>
+                </a>
+                <a href="#" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
+                    <i class="bi bi-bookmarks-fill"></i>
+                    <p>Categorias</p>
+                </a>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>Panel de Administrador</h2>
+            </div>
+        </section>
+    </div>
 </body>
 </html>

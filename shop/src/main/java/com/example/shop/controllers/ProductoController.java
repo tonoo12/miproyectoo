@@ -19,7 +19,7 @@ import com.example.shop.entities.Producto;
 import com.example.shop.repositories.ProductoRepository;
 import com.example.shop.services.ProductoService;
 
-import org.springframework.ui.Model; // Importación corregida
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/productos")
