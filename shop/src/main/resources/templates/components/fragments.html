@@ -77,7 +77,8 @@
         <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasMenu">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title">Menú</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
             </div>
             <div class="offcanvas-body d-flex flex-column gap-3 align-items-start ps-3">
                 <a class="nav-link text-white fw-bold" href="/">Inicio</a>
@@ -92,6 +93,27 @@
             </div>
         </div>
     </header>
+
+    <section class="bg-dark text-white d-flex flex-column" style="height: 100vh;" th:fragment="navAdmin">
+        <h1 class="fs-5 text-wrap px-2 py-2 mx-auto text-center">Panel de administrador</h1>
+        <div class="px-4 py-2 mx-auto">
+            <a href="/admin">
+                <img src="https://tokeinka.pe/cdn/shop/files/AF_IMAGOTIPO_CON_ESLOGAN_-_BLANCO_-_3.png?v=1694699606&width=1891"
+                alt="Logo" style="width: 145px; height: 120px;">
+            </a>
+        </div>
+        <hr class="text-white mx-auto" style="width: 90%;">
+        <div class="mx-auto fs-5">
+            <a href="/admin-productos" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
+                <i class="bi bi-sunglasses"></i>
+                <p>Productos</p>
+            </a>
+            <a href="#" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
+                <i class="bi bi-bookmarks-fill"></i>
+                <p>Categorias</p>
+            </a>
+        </div>
+    </section>
 
     <footer id="piedepagina">
         <div class="contenedor">

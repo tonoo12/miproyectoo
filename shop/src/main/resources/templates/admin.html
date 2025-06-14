@@ -5,23 +5,7 @@
 
 <body>
     <div class="d-flex gap-3">
-        <section class="bg-dark text-white" style="height: 100vh;">
-            <div class="px-4 py-4 mx-auto">
-                <img src="https://tokeinka.pe/cdn/shop/files/AF_IMAGOTIPO_CON_ESLOGAN_-_BLANCO_-_3.png?v=1694699606&width=1891"
-                    alt="Logo" class="" style="width: 145px; height: 120px;">
-            </div>
-            <hr class="text-white mx-auto" style="width: 90%;">
-            <div class="mx-auto fs-6">
-                <a href="#" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
-                    <i class="bi bi-sunglasses"></i>
-                    <p>Productos</p>
-                </a>
-                <a href="#" class="d-flex gap-2 px-4 text-decoration-none botonAncor">
-                    <i class="bi bi-bookmarks-fill"></i>
-                    <p>Categorias</p>
-                </a>
-            </div>
-        </section>
+        <header th:replace="~{components/fragments :: navAdmin}"></header>
         <section>
             <div>
                 <h2>Panel de Administrador</h2>

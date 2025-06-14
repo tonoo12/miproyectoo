@@ -43,6 +43,11 @@ public class CategoriaService {
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
     }
 
+    // Guardar producto
+    public Categoria guardarCategoria(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
     // Eliminar una categoria por su ID
     public void eliminarCategoria(Long id) {
         categoriaRepository.deleteById(id);
