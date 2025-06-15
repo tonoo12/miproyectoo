@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Formulario Producto</title>
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
-</head>
+
+<head th:replace="~{components/fragments :: cabecera('Formulario Producto')}"></head>
+
 <body>
     <h1>Productos</h1>
-    <form th:action="@{/admin/guardar}" th:object="${producto}" method="post">
-        <input type="hidden" th:field="*{idProducto}"/>
+    <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post">
+        <input type="hidden" th:field="*{idProducto}" />
+
         <label>Nombre:</label>
-        <input type="text" th:field="*{nombreProducto}" maxlength="50" required/><br/>
+        <input type="text" th:field="*{nombreProducto}" maxlength="50" required /><br />
+
         <label>Descripción:</label>
-        <textarea th:field="*{descripcionProducto}" required></textarea><br/>
+        <textarea th:field="*{descripcionProducto}" required></textarea><br />
+
         <label>Precio:</label>
-        <input type="number" step="0.01" th:field="*{precioProducto}" min="0" required/><br/>
+        <input type="number" step="0.01" th:field="*{precioProducto}" min="0" required /><br />
+        
+        <label>Stock:</label>
+        <input type="number" th:field="*{stockProducto}" min="0" required /><br />
+
         <label>Imagen URL:</label>
-        <input type="text" th:field="*{imagenProducto}" /><br/>
+        <input type="text" th:field="*{imagenProducto}" /><br />
+
+        <label>Categoría:</label>
+        <select name="categoria.idCategoria" class="form-control" required>
+            <option value="" disabled selected>Selecciona una categoría</option>
+            <option th:each="cat : ${categorias}" th:value="${cat.idCategoria}" th:text="${cat.nombreCategoria}">
+            </option>
+        </select><br>
+        
+
+        
         <button type="submit" id="guardar-button" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/admin/productos(page=${paginaActual})}" class="btn btn-secondary">Cancelar</a>
     </form>
 </body>
+
 </html>

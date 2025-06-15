@@ -3,6 +3,7 @@ package com.example.shop.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.shop.entities.Categoria;
@@ -11,6 +12,7 @@ import com.example.shop.repositories.CategoriaRepository;
 @Service
 public class CategoriaService {
     // Inyección de dependencias del repositorio de categorías
+    @Autowired
     private final CategoriaRepository categoriaRepository;
 
     // Constructor para inicializar el repositorio

@@ -3,6 +3,9 @@ package com.example.shop.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.shop.entities.Producto;
@@ -11,6 +14,7 @@ import com.example.shop.repositories.ProductoRepository;
 @Service
 public class ProductoService {
 
+    @Autowired
     private final ProductoRepository productoRepository;
 
     public ProductoService(ProductoRepository productoRepository) {
@@ -20,6 +24,10 @@ public class ProductoService {
     // Listar productos
     public List<Producto> listarProductos() {
         return productoRepository.findAll();
+    }
+
+    public Page<Producto> listarProductosPaginados(Pageable pageable) {
+        return productoRepository.findAll(pageable);
     }
 
     // Obtener producto por ID
