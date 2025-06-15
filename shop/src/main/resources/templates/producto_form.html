@@ -1,40 +1,61 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
-<head th:replace="~{components/fragments :: cabecera('Formulario Producto')}"></head>
+<head th:replace="~{components/fragments :: cabecera('Nuevo producto')}"></head>
 
 <body>
-    <h1>Productos</h1>
-    <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post">
-        <input type="hidden" th:field="*{idProducto}" />
+    <div class="d-flex min-vh-100">
+        <header th:replace="~{components/fragments :: navAdmin}"></header>
+        <section class="d-flex flex-column align-items-center w-100 px-4 mt-5">
+            <div class="d-flex align-items-center py-2">
+                <h1 class="align-middle"><b>Nuevo producto</b></h1>
+            </div>
+            <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post"
+                class="w-50 d-flex flex-column gap-3">
+                <input type="hidden" th:field="*{idProducto}" />
 
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombreProducto}" maxlength="50" required /><br />
+                <div class="d-flex flex-column gap-2">
+                    <label>Nombre:</label>
+                    <input type="text" th:field="*{nombreProducto}" maxlength="50" required class="form-control" />
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <label>Descripción:</label>
+                    <textarea th:field="*{descripcionProducto}" required class="form-control"></textarea>
+                </div>
 
-        <label>Descripción:</label>
-        <textarea th:field="*{descripcionProducto}" required></textarea><br />
+                <div class="d-flex flex-column gap-2">
+                    <label>Categoría:</label>
+                    <select name="categoria.idCategoria" class="form-control" required>
+                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <option th:each="cat : ${categorias}" th:value="${cat.idCategoria}"
+                            th:text="${cat.nombreCategoria}">
+                        </option>
+                    </select>
+                </div>
 
-        <label>Precio:</label>
-        <input type="number" step="0.01" th:field="*{precioProducto}" min="0" required /><br />
-        
-        <label>Stock:</label>
-        <input type="number" th:field="*{stockProducto}" min="0" required /><br />
+                <div class="d-flex flex-column gap-2">
+                    <label>Precio:</label>
+                    <input type="number" step="0.01" th:field="*{precioProducto}" min="0" required
+                        class="form-control" />
+                </div>
 
-        <label>Imagen URL:</label>
-        <input type="text" th:field="*{imagenProducto}" /><br />
+                <div class="d-flex flex-column gap-2">
+                    <label>Stock:</label>
+                    <input type="number" th:field="*{stockProducto}" min="0" required class="form-control" />
+                </div>
 
-        <label>Categoría:</label>
-        <select name="categoria.idCategoria" class="form-control" required>
-            <option value="" disabled selected>Selecciona una categoría</option>
-            <option th:each="cat : ${categorias}" th:value="${cat.idCategoria}" th:text="${cat.nombreCategoria}">
-            </option>
-        </select><br>
-        
+                <div class="d-flex flex-column gap-2">
+                    <label>Imagen URL:</label>
+                    <input type="text" th:field="*{imagenProducto}" class="form-control" />
+                </div>
 
-        
-        <button type="submit" id="guardar-button" class="btn btn-primary">Guardar</button>
-        <a th:href="@{/admin/productos(page=${paginaActual})}" class="btn btn-secondary">Cancelar</a>
-    </form>
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" id="guardar-button" class="btn btn-primary">Guardar</button>
+                    <a th:href="@{/admin/productos(page=${paginaActual})}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
 
 </html>

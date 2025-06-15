@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.shop.entities.Categoria;
@@ -23,6 +25,10 @@ public class CategoriaService {
     // Listar categorias
     public List<Categoria> listarCategorias() {
         return categoriaRepository.findAll();
+    }
+
+    public Page<Categoria> listarCategoriasPaginadas(Pageable pageable) {
+        return categoriaRepository.findAll(pageable);
     }
 
     // Obtener categoria por ID
