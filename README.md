@@ -1,2 +1,2 @@
-SpringBoot + TailwindCSS + Thymeleaf + PHP
+SpringBoot + TailwindCSS + Thymeleaf 
 
