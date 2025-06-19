@@ -9,27 +9,37 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
-    private long idCliente;
+    @Column(name = "id_usuario")
+    private long idUsuario;
 
-    @Column(name = "nombre_cliente")
-    private String nombreCliente;
+    @Column(name = "nombre_usuario")
+    private String nombre;
+
+    @Column(name = "apellido_usuario")
+    private String apellido;
 
     @Column(name = "email")
     private String email;
 
+    @Column(name = "contraseña")
+    private String contraseña;
+
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente")
+    @Column(name = "rol")
+    private String rol;
+
+    @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos;
 }

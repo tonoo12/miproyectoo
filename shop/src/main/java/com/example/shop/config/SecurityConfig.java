@@ -18,24 +18,26 @@ public class SecurityConfig {
     }
 
     @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        // Configuración de seguridad
-        //         http.csrf(csrf -> csrf.disable())
-        //                         .authorizeHttpRequests(auth -> auth
-        //                                         .requestMatchers("/css/**", "/Js/**", "/images/**", "/", "/camisas", 
-        //                                         "/gorras", "/pantalones", "/poleras", "/polos", "/prototipo", "/zapatillas", "/error404", "/api/productos",
-        //                                         "/api/categorias", "/productos", "/nosotros", "/login", "/productos/filtrar")
-        //                                         .permitAll())
-        //                                         .exceptionHandling(ex -> ex.accessDeniedPage("/error404"));   
-        // return http.build();
-        
-        // Configuracion para insertar sin que salga error 403(prohibido)
-        http.csrf().disable()
-            .authorizeHttpRequests()
-            .anyRequest().permitAll();
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Configuracion de seguridad
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/register/**", "/contactanos/**", "/nosotros", "/login/**", "/css/**", "/images/**","/js/**", "/", "/inicio", "/productos/**").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/admin", true)
+                        .permitAll())
+                .logout(logout -> logout.permitAll())
+                .exceptionHandling(ex -> ex.accessDeniedPage("/acceso-denegado"));
         return http.build();
-    
+
+        // Configuracion para insertar sin que salga error 403(prohibido)
+        // http.csrf().disable()
+        // .authorizeHttpRequests()
+        // .anyRequest().permitAll();
+
+        // return http.build();
     }
 }
