@@ -34,8 +34,32 @@ public class Usuario {
     @Column(name = "contraseña")
     private String contraseña;
 
-    @Column(name = "direccion")
-    private String direccion;
+    // @Column(name = "telefono")
+    // private String telefono;
+
+    // @Column(name = "dni")
+    // private String dni;
+
+    // @Column(name = "fecha_nacimiento")
+    // private String fechaNacimiento;
+
+    // @Column(name = "genero")
+    // private String genero;
+
+    // @Column(name = "ciudad")
+    // private String ciudad;
+
+    // @Column(name = "departamento")
+    // private String departamento;
+
+    // @Column(name = "pais")
+    // private String pais;
+
+    // @Column(name = "codigo_postal")
+    // private String codigoPostal;
+
+    // @Column(name = "direccion")
+    // private String direccion;
 
     @Column(name = "rol")
     private String rol;

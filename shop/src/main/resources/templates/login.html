@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{components/fragments :: cabecera('Toke Inka - Iniciar Sesión')}">
+<head th:replace="~{components/fragments :: cabecera('Toke Inka - Iniciar Sesión')}"></head>
 
 <body>
     <form th:action="@{/login}" method="post">
     <input type="email" name="email" placeholder="Correo" required />
     <input type="password" name="password" placeholder="Contraseña" required />
     <button type="submit">Iniciar Sesión</button>
-    <p>¿No tienes una cuenta? <a th:href="@{/registro}">Regístrate aquí</a></p>
+    <p>¿No tienes una cuenta? <a th:href="@{/register}">Regístrate aquí</a></p>
 </form>
 </body>
 

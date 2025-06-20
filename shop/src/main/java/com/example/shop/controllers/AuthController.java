@@ -30,7 +30,7 @@ public class AuthController {
     @PostMapping("/register")
     public String registrarUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.registrarNuevoUsuario(usuario);
-        return "redirect:/login?success";
+        return "redirect:/index";
     }
 
 }

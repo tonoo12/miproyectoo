@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{components/fragments :: cabecera('Toke Inka - Registrarse')}">
+
+<head th:replace="~{components/fragments :: cabecera('Toke Inka - Registrarse')}"></head>
+
 <body>
-    <form th:action="@{/registro}" th:object="${usuario}" method="post">
-    <input type="text" th:field="*{username}" placeholder="Usuario" required />
-    
-    <input type="password" th:field="*{password}" placeholder="Contraseña" required />
-    <select th:field="*{rol}">
-        <option value="USER">Usuario</option>
-    </select>
-    <button type="submit">Registrar</button>
-</form>
+    <form th:action="@{/register}" th:object="${usuario}" method="post">
+        <input type="text" th:field="*{nombre}" placeholder="Nombre" maxlength="50" required />
+
+        <input type="text" th:field="*{apellido}" placeholder="Apellido" maxlength="50" required />
+
+        <!-- <select name="select" th:field="*{genero}" required>
+            <option value="" selected>Seleccionar genero</option>
+            <option value="value2">Masculino</option>
+            <option value="value3">Femenino</option>
+        </select> -->
+
+        <input type="email" th:field="*{email}" placeholder="Correo" required />
+
+        <input type="password" th:field="*{contraseña}" placeholder="Contraseña" minlength="10" maxlength="20"
+            required />
+
+        <!-- <input type="text" th:field="*{direccion}" placeholder="Dirección" maxlength="50" required />
+
+        <input type="tel" th:field="*{telefono}" placeholder="Teléfono" minlength="9" required />
+
+        <input type="text" th:field="*{dni}" placeholder="DNI" minlength="8" required />
+
+        <input type="date" th:field="*{fechaNacimiento}" placeholder="Fecha de Nacimiento (YYYY-MM-DD)" required />
+
+        <input type="text" th:field="*{ciudad}" placeholder="Ciudad" maxlength="50" required />
+
+        <input type="text" th:field="*{departamento}" placeholder="Departamento" maxlength="50" required />
+
+        <input type="text" th:field="*{pais}" placeholder="País" maxlength="20" required />
+
+        <input type="text" th:field="*{codigoPostal}" placeholder="Código Postal" maxlength="15" required /> -->
+
+        <!-- <select th:field="*{rol}">
+            <option value="USER">Usuario</option>
+        </select> -->
+
+        <button type="submit">Registrar</button>
+    </form>
 </body>
+
 </html>
