@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="cabecera(titulo)">
     <meta charset="UTF-8">
@@ -53,10 +53,15 @@
                     </ul>
 
                     <!-- Botones a la derecha -->
-                    <div class="d-flex align-items-center pe-2">
-                        <!-- Iniciar sesión: visible en md+ -->
-                        <a href="/login" class="btn btn-outline-light d-none d-md-block">
+                    <div class="d-flex align-items-center pe-2" sec:authorize="!isAuthenticated()">
+                        <a th:href="@{/login}" class="btn btn-outline-light d-none d-md-block">
                             <i class="bi bi-person-circle me-1"></i> Iniciar Sesión
+                        </a>
+                    </div>
+
+                    <div class="d-flex align-items-center pe-2" sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}" class="btn btn-outline-light d-none d-md-block">
+                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
                         </a>
                     </div>
 
@@ -86,9 +91,18 @@
                 <a class="nav-link text-white fw-bold" href="/nosotros">Nosotros</a>
                 <a class="nav-link text-white fw-bold" href="/contactanos">Contacto</a>
 
-                <a href="/login" class="btn btn-outline-light">
-                    <i class="bi bi-person-circle me-1"></i> Iniciar Sesión
-                </a>
+                <div class="d-flex align-items-center pe-2" sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}" class="btn btn-outline-light">
+                        <i class="bi bi-person-circle me-1"></i> Iniciar Sesión
+                    </a>
+                </div>
+
+                <div class="d-flex align-items-center pe-2" sec:authorize="isAuthenticated()">
+                    <a th:href="@{/logout}" class="btn btn-outline-light">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                    </a>
+                </div>
+
 
             </div>
         </div>
@@ -99,7 +113,7 @@
         <div class="px-4 py-2 mx-auto">
             <a href="/admin">
                 <img src="https://tokeinka.pe/cdn/shop/files/AF_IMAGOTIPO_CON_ESLOGAN_-_BLANCO_-_3.png?v=1694699606&width=1891"
-                alt="Logo" style="width: 145px; height: 120px;">
+                    alt="Logo" style="width: 145px; height: 120px;">
             </a>
         </div>
         <hr class="text-white mx-auto" style="width: 90%;">
@@ -112,6 +126,14 @@
                 <i class="bi bi-bookmarks-fill"></i>
                 <p>Categorias</p>
             </a>
+        </div>
+        <div class="d-flex flex-column gap-2 justify-content-end align-items-center mt-auto mb-3">
+            <hr class="text-white mx-auto" style="width: 90%;">
+            <div class="d-flex justify-content-center">
+                <a href="/" class="btn btn-outline-light w-100 fs-6">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar panel
+                </a>
+            </div>
         </div>
     </section>
 
