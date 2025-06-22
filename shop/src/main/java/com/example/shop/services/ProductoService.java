@@ -26,6 +26,7 @@ public class ProductoService {
         return productoRepository.findAll();
     }
 
+    // Vista paginada de productos en panel
     public Page<Producto> listarProductosPaginados(Pageable pageable) {
         return productoRepository.findAll(pageable);
     }

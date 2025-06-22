@@ -19,6 +19,7 @@ import com.example.shop.services.CategoriaService;
 @Controller
 @RequestMapping("/admin/categorias")
 public class AdminCategoriaController {
+    
     @Autowired
     private CategoriaService categoriaService;
 
