@@ -1,5 +1,7 @@
 package com.example.shop.services;
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,8 @@ public class AdminProductoService {
         return productoRepository.findAll();
     }
 
-    public Producto obtenerPorId(Long id) {
-        return productoRepository.findById(id).orElse(null);
+    public Optional<Producto> obtenerPorId(Long id) {
+        return productoRepository.findById(id);
     }
 
     public void guardar(Producto producto) {

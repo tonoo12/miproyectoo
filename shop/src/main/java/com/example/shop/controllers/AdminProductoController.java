@@ -1,10 +1,12 @@
 package com.example.shop.controllers;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +23,6 @@ import com.example.shop.entities.Categoria;
 import com.example.shop.entities.Producto;
 import com.example.shop.services.CategoriaService;
 import com.example.shop.services.ProductoService;
-
-import org.springframework.util.StringUtils;
 
 import org.springframework.ui.Model;
 
@@ -56,20 +56,33 @@ public class AdminProductoController {
     }
 
     @PostMapping("/guardar")
-    public String guardarProducto(@ModelAttribute Producto producto, @RequestParam("imagen") MultipartFile imagen) throws IOException {
+    public String guardarProducto(@ModelAttribute Producto producto, @RequestParam("imagen") MultipartFile imagen,
+            @RequestParam("imagenActual") String imagenActual)
+            throws IOException {
         if (!imagen.isEmpty()) {
-            String nombreArchivo = StringUtils.cleanPath(imagen.getOriginalFilename());
-            String ruta = new ClassPathResource("static/images/").getFile().getAbsolutePath();
-            imagen.transferTo(new File(ruta + File.separator + nombreArchivo));
-            producto.setImagenProducto(nombreArchivo);
+            String nombreImagen = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
+
+            String rutaImagenes = "C:/Users/USER/Desktop/Proyecto Desarrollo Web Integrado/Desww/shop/imagenes/";
+
+            Files.createDirectories(Paths.get(rutaImagenes));
+
+            Path rutaArchivo = Paths.get(rutaImagenes + nombreImagen);
+            Files.write(rutaArchivo, imagen.getBytes());
+
+            producto.setImagenProducto(nombreImagen);
+        } else {
+            producto.setImagenProducto(imagenActual);
         }
+
         productoService.guardarProducto(producto);
         return "redirect:/admin/productos";
     }
 
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        model.addAttribute("producto", productoService.obtenerProductoPorId(id));
+        Producto producto = productoService.obtenerProductoPorId(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        model.addAttribute("producto", producto);
         model.addAttribute("categorias", categoriaService.listarCategorias());
         return "producto_form";
     }
@@ -77,6 +90,6 @@ public class AdminProductoController {
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProducto(id);
-        return "redirect:/admin-productos";
+        return "redirect:/admin/productos";
     }
 }

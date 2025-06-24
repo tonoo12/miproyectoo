@@ -33,7 +33,7 @@
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="productosLista">
                 <div th:each="p : ${productos}" class="col producto">
                     <div class="card h-100 shadow-sm">
-                        <img th:src="@{/images/{img}(img=${p.imagenProducto})}" class="card-img-top object-fit-cover"
+                        <img th:src="@{'/imagenes/' + ${p.imagenProducto}}" class="card-img-top object-fit-cover"
                             style="height: 400px; width: 100%;" th:alt="${p.nombreProducto}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
