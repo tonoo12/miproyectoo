@@ -13,8 +13,8 @@
                     class="img-fluid h-100 w-100 object-fit-cover" />
             </div>
 
-            <div class="w-100 w-md-50 bg-white p-4 d-flex flex-column justify-content-center gap-4">
-                <h1 class="fs-3 text-center">Iniciar Sesión</h1>
+            <div class="w-100 h-100 w-md-50 bg-white p-4 d-flex flex-column justify-content-center gap-4">
+                <h1 class="fs-3 text-center h-100 d-flex justify-content-center align-items-end">Iniciar Sesión</h1>
                 <form th:action="@{/login}" method="post" class="gap-4 d-flex flex-column justify-content-around">
                     <div class="">
                         <input class="form-control" type="email" name="username" placeholder="Correo" required
@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="">
-                        <input class="form-control" type="password" name="password"
-                            placeholder="Contraseña" required aria-describedby="passwordHelpBlock" />
+                        <input class="form-control" type="password" name="password" placeholder="Contraseña" required
+                            aria-describedby="passwordHelpBlock" />
                         <div id="passwordHelpBlock" class="form-text">Ingrese su contraseña. Debe tener al menos 8
                             caracteres.</div>
                     </div>
@@ -33,13 +33,14 @@
                             class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Regístrate
                             aquí</a></p>
                 </form>
+                <div class="text-center h-75 w-100 d-flex justify-content-end align-items-end">
+                    <a href="/" class="link-primary link-offset-2 link-underline link-underline-opacity-0 ">
+                        <i class="bi bi-arrow-left"></i> Volver al inicio
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="text-center mt-4 w-100">
-            <a href="/" class="link-primary link-offset-2 link-underline link-underline-opacity-0 ">
-                <i class="bi bi-arrow-left"></i> Volver al inicio
-            </a>
         </div>
     </section>
 </body>
+
 </html>
