@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.shop.entities.TallaProducto;
 
 public interface TallaProductoRepository extends JpaRepository<TallaProducto, Long>{
-    List<TallaProducto> findByProductoId(Long idProducto);
+    List<TallaProducto> findByProducto_IdProducto(Long idProducto);
 }

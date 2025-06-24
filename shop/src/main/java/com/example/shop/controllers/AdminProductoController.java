@@ -1,6 +1,14 @@
 package com.example.shop.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,11 +19,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.shop.entities.Categoria;
 import com.example.shop.entities.Producto;
 import com.example.shop.services.CategoriaService;
 import com.example.shop.services.ProductoService;
+
+import org.springframework.util.StringUtils;
 
 import org.springframework.ui.Model;
 
@@ -49,7 +60,13 @@ public class AdminProductoController {
     }
 
     @PostMapping("/guardar")
-    public String guardarProducto(@ModelAttribute Producto producto) {
+    public String guardarProducto(@ModelAttribute Producto producto, @RequestParam("imagen") MultipartFile imagen) throws IOException {
+        if (!imagen.isEmpty()) {
+            String nombreArchivo = StringUtils.cleanPath(imagen.getOriginalFilename());
+            String ruta = new ClassPathResource("static/images/").getFile().getAbsolutePath();
+            imagen.transferTo(new File(ruta + File.separator + nombreArchivo));
+            producto.setImagenProducto(nombreArchivo);
+        }
         productoService.guardarProducto(producto);
         return "redirect:/admin/productos";
     }

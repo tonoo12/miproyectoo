@@ -16,7 +16,7 @@ public class TallaProductoService {
     private TallaProductoRepository tallaProductoRepository;
 
     public List<TallaProducto> listarTallaPorProductos(Long idProducto){
-        return tallaProductoRepository.findByProductoId(idProducto);
+        return tallaProductoRepository.findByProducto_IdProducto(idProducto);
     }
 
     public void guardarTallaProducto(TallaProducto tallaProducto){
@@ -24,7 +24,7 @@ public class TallaProductoService {
     }
 
     public Optional<TallaProducto> obtenerPorTallaYProducto(Long idProducto, Long idTalla){
-        return tallaProductoRepository.findByProductoId(idProducto).stream()
+        return tallaProductoRepository.findByProducto_IdProducto(idProducto).stream()
         .filter(tp -> tp.getTalla().getIdTalla().equals(idTalla))
         .findFirst();
     }

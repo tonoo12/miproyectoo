@@ -11,7 +11,7 @@
                 <h1 class="align-middle"><b>Nuevo producto</b></h1>
             </div>
             <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post"
-                class="w-50 d-flex flex-column gap-3">
+                class="w-50 d-flex flex-column gap-3" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{idProducto}" />
 
                 <div class="d-flex flex-column gap-2">
@@ -45,8 +45,8 @@
                 </div>
 
                 <div class="d-flex flex-column gap-2">
-                    <label>Imagen URL:</label>
-                    <input type="text" th:field="*{imagenProducto}" class="form-control" />
+                    <label for="imagen" class="form-label">Imagen del producto</label>
+                    <input class="form-control" type="file" id="imagen" name="imagen">
                 </div>
 
                 <div class="d-flex justify-content-end gap-2">
