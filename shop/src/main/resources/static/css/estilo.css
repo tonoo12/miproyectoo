@@ -40,6 +40,8 @@ header .icon {
     cursor: pointer;
 }
 
+/* CARRO DE COMPRAS */
+
 header .shopping-cart {
     position: absolute;
     top: 50%;
