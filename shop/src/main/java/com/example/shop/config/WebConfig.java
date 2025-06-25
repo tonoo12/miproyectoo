@@ -1,5 +1,7 @@
 package com.example.shop.config;
 
+import java.io.File;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -25,6 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/imagenes/**")
-                .addResourceLocations("file:C:/Users/USER/Desktop/Proyecto Desarrollo Web Integrado/Desww/shop/imagenes/");
+                .addResourceLocations("file:" + System.getProperty("user.dir") + File.separator + "shop"
+                        + File.separator + "imagenes" + File.separator);
     }
+
 }

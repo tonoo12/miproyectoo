@@ -1,5 +1,6 @@
 package com.example.shop.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,18 +57,23 @@ public class AdminProductoController {
     }
 
     @PostMapping("/guardar")
-    public String guardarProducto(@ModelAttribute Producto producto, @RequestParam("imagen") MultipartFile imagen,
-            @RequestParam("imagenActual") String imagenActual)
-            throws IOException {
+    public String guardarProducto(@ModelAttribute Producto producto,
+            @RequestParam("imagen") MultipartFile imagen,
+            @RequestParam("imagenActual") String imagenActual) throws IOException {
+
         if (!imagen.isEmpty()) {
-            String nombreImagen = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
+            // Ruta absoluta hacia la carpeta imagenes dentro del proyecto 'shop'
+            String rutaBase = System.getProperty("user.dir") + File.separator + "shop" + File.separator + "imagenes";
+            Path rutaImagenes = Paths.get(rutaBase);
 
-            String rutaImagenes = "C:/Users/USER/Desktop/Proyecto Desarrollo Web Integrado/Desww/shop/imagenes/";
+            // Crear carpeta si no existe
+            if (!Files.exists(rutaImagenes)) {
+                Files.createDirectories(rutaImagenes);
+            }
 
-            Files.createDirectories(Paths.get(rutaImagenes));
-
-            Path rutaArchivo = Paths.get(rutaImagenes + nombreImagen);
-            Files.write(rutaArchivo, imagen.getBytes());
+            // Generar nombre único y guardar archivo
+            String nombreImagen = UUID.randomUUID() + "_" + imagen.getOriginalFilename();
+            Files.write(rutaImagenes.resolve(nombreImagen), imagen.getBytes());
 
             producto.setImagenProducto(nombreImagen);
         } else {
