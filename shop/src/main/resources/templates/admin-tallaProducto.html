@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head th:replace="~{components/fragments :: cabecera('Tallas por Productos - Panel Administrador')}"></head>
+
+<body>
+    <div class="d-flex min-vh-100">
+        <header th:replace="~{components/fragments :: navAdmin}"></header>
+        <section class="w-100 px-4">
+            <div class="d-flex justify-content-between align-items-center py-2">
+                <h1 class="align-middle"><b>Tallas por productos</b></h1>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Talla</th>
+                            <th>Stock</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="tp : ${tallasProductos}">
+                            <td th:text="${tp.producto.nombreProducto}">Nombre</td>
+                            <td th:text="${tp.talla.nombreTalla}">Talla</td>
+                            <td th:text="${tp.stock}">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

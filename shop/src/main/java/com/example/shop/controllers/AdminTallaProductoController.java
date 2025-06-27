@@ -1,5 +1,7 @@
 package com.example.shop.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.shop.entities.Producto;
 import com.example.shop.entities.TallaProducto;
 import com.example.shop.services.ProductoService;
 import com.example.shop.services.TallaProductoService;
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/admin/talla-producto")
 public class AdminTallaProductoController {
-    
+
     @Autowired
     private TallaProductoService tallaProductoService;
 
@@ -27,18 +30,40 @@ public class AdminTallaProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @GetMapping
+    public String listarTallaPorProductos(Model model) {
+        model.addAttribute("tallasProductos", tallaProductoService.listarTodos());
+        return "admin-tallaProducto";
+    }
+
     @GetMapping("/nuevo/{idProducto}")
-    public String formularioTallasProducto(@PathVariable Long idProducto, Model model){
-        model.addAttribute("producto", productoService.obtenerProductoPorId(idProducto));
-        model.addAttribute("tallas", tallaService.listarTallas());
-        model.addAttribute("tallaProducto", new TallaProducto());
-        return "";
+    public String formularioTallasProducto(@PathVariable Long idProducto, Model model) {
+        Optional<Producto> productoOpt = productoService.obtenerProductoPorId(idProducto);
+        if (productoOpt.isPresent()) {
+            Producto producto = productoOpt.get();
+            model.addAttribute("producto", producto);
+
+            TallaProducto tallaProducto = new TallaProducto();
+            tallaProducto.setProducto(producto);
+
+            model.addAttribute("tallas", tallaService.listarTallas());
+            model.addAttribute("tallaProducto", tallaProducto);
+            return "tallaProducto-form";
+        } else {
+            return "redirect:/admin/productos"; // o muestra un error si prefieres
+        }
     }
 
     @PostMapping("/guardar")
     public String guardarTallaProducto(@ModelAttribute TallaProducto tallaProducto) {
         tallaProductoService.guardarTallaProducto(tallaProducto);
-        return "";
+        return "redirect:/admin/productos";
     }
-    
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id) {
+        tallaProductoService.eliminarTallaProducto(id);
+        return "redirect:/admin/talla-producto";
+    }
+
 }

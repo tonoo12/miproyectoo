@@ -11,22 +11,33 @@ import com.example.shop.repositories.TallaProductoRepository;
 
 @Service
 public class TallaProductoService {
-    
+
     @Autowired
     private TallaProductoRepository tallaProductoRepository;
 
-    public List<TallaProducto> listarTallaPorProductos(Long idProducto){
+    public List<TallaProducto> listarTodos() {
+        return tallaProductoRepository.findAll();
+    }
+
+    public List<TallaProducto> listarTallaPorProductos(Long idProducto) {
         return tallaProductoRepository.findByProducto_IdProducto(idProducto);
     }
 
-    public void guardarTallaProducto(TallaProducto tallaProducto){
+    public void guardarTallaProducto(TallaProducto tallaProducto) {
         tallaProductoRepository.save(tallaProducto);
     }
 
-    public Optional<TallaProducto> obtenerPorTallaYProducto(Long idProducto, Long idTalla){
+    public Optional<TallaProducto> obtenerPorTallaYProducto(Long idProducto, Long idTalla) {
         return tallaProductoRepository.findByProducto_IdProducto(idProducto).stream()
-        .filter(tp -> tp.getTalla().getIdTalla().equals(idTalla))
-        .findFirst();
+                .filter(tp -> tp.getTalla().getIdTalla().equals(idTalla))
+                .findFirst();
     }
 
+    public void eliminarTallaProducto(Long id) {
+        tallaProductoRepository.deleteById(id);
+    }
+
+    public TallaProducto obtenerPorId(Long id) {
+        return tallaProductoRepository.findById(id).orElse(null);
+    }
 }

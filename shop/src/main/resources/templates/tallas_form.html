@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head th:replace="~{components/fragments :: cabecera('Tallas - Panel Administrador')}"></head>
+
+<body>
+    <div class="d-flex min-vh-100">
+        <header th:replace="~{components/fragments :: navAdmin}"></header>
+        <section class="w-100 px-4">
+            <div class="d-flex justify-content-between align-items-center py-2">
+                <form th:action="@{/admin/tallas/guardar}" method="post" th:object="${talla}">
+                    <label for="nombreTalla">Nombre de la talla:</label>
+                    <input type="text" th:field="*{nombreTalla}" required />
+                    <br>
+
+                    <button type="submit">Guardar</button>
+                </form>
+                <a th:href="@{/admin/tallas}">Volver al listado</a>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
