@@ -50,14 +50,27 @@ public class AdminTallaProductoController {
             model.addAttribute("tallaProducto", tallaProducto);
             return "tallaProducto-form";
         } else {
-            return "redirect:/admin/productos"; // o muestra un error si prefieres
+            return "redirect:/admin/talla-producto";
         }
     }
 
     @PostMapping("/guardar")
     public String guardarTallaProducto(@ModelAttribute TallaProducto tallaProducto) {
         tallaProductoService.guardarTallaProducto(tallaProducto);
-        return "redirect:/admin/productos";
+        return "redirect:/admin/talla-producto";
+    }
+
+    @GetMapping("/editar/{idTallaProducto}")
+    public String editarTallaProducto(@PathVariable Long idTallaProducto, Model model) {
+        TallaProducto tp = tallaProductoService.obtenerPorId(idTallaProducto);
+        if (tp == null) {
+            throw new IllegalArgumentException("ID inválido: " + idTallaProducto);
+        }
+
+        model.addAttribute("tallaProducto", tp);
+        model.addAttribute("producto", tp.getProducto());
+        model.addAttribute("tallas", tallaService.listarTallas());
+        return "tallaProducto-form";
     }
 
     @GetMapping("/eliminar/{id}")

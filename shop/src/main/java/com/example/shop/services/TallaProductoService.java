@@ -24,6 +24,23 @@ public class TallaProductoService {
     }
 
     public void guardarTallaProducto(TallaProducto tallaProducto) {
+        // Solo para nuevos registros sin ID
+        if (tallaProducto.getIdTallaProducto() == null) {
+            Optional<TallaProducto> existente = tallaProductoRepository
+                    .findByProducto_IdProducto(tallaProducto.getProducto().getIdProducto())
+                    .stream()
+                    .filter(tp -> tp.getTalla().getIdTalla().equals(tallaProducto.getTalla().getIdTalla()))
+                    .findFirst();
+
+            if (existente.isPresent()) {
+                TallaProducto tpExistente = existente.get();
+                tpExistente.setStock(tallaProducto.getStock());
+                tallaProductoRepository.save(tpExistente);
+                return;
+            }
+        }
+
+        // Si es edición (ya tiene ID) o no hay duplicado
         tallaProductoRepository.save(tallaProducto);
     }
 

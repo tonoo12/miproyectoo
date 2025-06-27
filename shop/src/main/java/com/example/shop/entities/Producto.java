@@ -30,8 +30,8 @@ public class Producto {
     @Column(name = "precio_producto")
     private double precioProducto;
 
-    @Column(name = "stock_producto")
-    private int stockProducto;
+    // @Column(name = "stock_producto")
+    // private int stockProducto;
 
     @Column(name = "imagen_producto")
     private String imagenProducto;

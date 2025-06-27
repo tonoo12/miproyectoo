@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,8 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.shop.entities.Categoria;
 import com.example.shop.entities.Producto;
+import com.example.shop.entities.TallaProducto;
 import com.example.shop.services.CategoriaService;
 import com.example.shop.services.ProductoService;
+import com.example.shop.services.TallaProductoService;
 
 import org.springframework.ui.Model;
 
@@ -37,13 +43,29 @@ public class AdminProductoController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private TallaProductoService tallaProductoService;
+
     @GetMapping
     public String listarProductos(@RequestParam(defaultValue = "0") int page, Model model) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Producto> productosPage = productoService.listarProductosPaginados(pageable);
-        model.addAttribute("productos", productosPage.getContent());
+        List<Producto> productos = productosPage.getContent();
+
+        // Generar resumen de tallas por producto
+        Map<Long, String> resumenTallas = new HashMap<>();
+        for (Producto producto : productos) {
+            List<TallaProducto> tallasProducto = tallaProductoService.listarTallaPorProductos(producto.getIdProducto());
+            String resumen = tallasProducto.stream()
+                    .map(tp -> tp.getTalla().getNombreTalla() + "(" + tp.getStock() + ")")
+                    .collect(Collectors.joining(", "));
+            resumenTallas.put(producto.getIdProducto(), resumen);
+        }
+
+        model.addAttribute("productos", productos);
         model.addAttribute("productosPage", productosPage);
         model.addAttribute("paginaActual", page);
+        model.addAttribute("resumenTallas", resumenTallas);
         return "admin-productos";
     }
 
@@ -66,12 +88,10 @@ public class AdminProductoController {
             String rutaBase = System.getProperty("user.dir") + File.separator + "shop" + File.separator + "imagenes";
             Path rutaImagenes = Paths.get(rutaBase);
 
-            // Crear carpeta si no existe
             if (!Files.exists(rutaImagenes)) {
                 Files.createDirectories(rutaImagenes);
             }
 
-            // Generar nombre único y guardar archivo
             String nombreImagen = UUID.randomUUID() + "_" + imagen.getOriginalFilename();
             Files.write(rutaImagenes.resolve(nombreImagen), imagen.getBytes());
 
