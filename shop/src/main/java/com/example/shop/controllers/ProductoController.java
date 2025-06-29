@@ -39,7 +39,7 @@ public class ProductoController {
     public String listarProductos(Model model) {
         List<Producto> productos = productoService.listarProductos();
         model.addAttribute("productos", productos);
-        return "productos"; // Nombre de la vista que se renderizará
+        return "productos"; 
     }
 
     @GetMapping("/{id}")
@@ -47,6 +47,17 @@ public class ProductoController {
         Optional<Producto> producto = productoService.obtenerProductoPorId(id);
         return producto.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/detalle/{id}")
+    public String detalleProducto(@PathVariable Long id, Model model) {
+        Optional<Producto> productoOptional = productoService.obtenerProductoPorId(id);
+        if (productoOptional.isPresent()) {
+            model.addAttribute("producto", productoOptional.get());
+            return "detalle-producto"; 
+        } else {
+            return "redirect:/error404";
+        }
     }
 
     @GetMapping("/filtrar")
@@ -60,7 +71,7 @@ public class ProductoController {
             productos = productoRepository.findAll();
         }
         model.addAttribute("productos", productos);
-        return "productos"; 
+        return "productos";
     }
 
     @PostMapping

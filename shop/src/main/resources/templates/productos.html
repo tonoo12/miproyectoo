@@ -3,56 +3,64 @@
 
 <head th:replace="~{components/fragments :: cabecera('Toke Inka - Producto')}"></head>
 
-<body class="d-flex flex-column min-vh-100">
-    <header th:replace="~{components/fragments :: header}"></header>
+<body>
+    <section class="d-flex flex-column min-vh-100">
+        <header th:replace="~{components/fragments :: header}"></header>
 
-    <main class="flex-grow-1 py-5">
-        <div class="container">
-            <!-- Título de la sección -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h2 class="text-center fw-bold">Nuestros Productos</h2>
-                    <hr class="mx-auto" style="width: 100px;">
+        <main class="flex-grow-1 py-5">
+            <div class="container">
+                <!-- Título de la sección -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="text-center fw-bold">Nuestros Productos</h2>
+                        <hr class="mx-auto" style="width: 100px;">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Busqueda y Filtros -->
-            <div class="row mb-4 g-2 justify-content-center">
-                <div class="col-md-8 ">
-                    <form th:action="@{/productos/filtrar}" method="get" class="input-group shadow-sm rounded d-flex gap-1">
-                        <input class="form-control" type="search" name="filtro"
-                            placeholder="Buscar productos por nombre o categoría..." aria-label="Buscar productos"
-                            th:value="${param.filtro}" autocomplete="off" />
-                        <button class="btn btn-index d-flex justify-content-center align-items-center gap-2 px-3 py-lg-3 py-2" type="submit" title="Buscar">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </form>
+                <!-- Busqueda y Filtros -->
+                <div class="row mb-4 g-2 justify-content-center">
+                    <div class="col-md-8 ">
+                        <form th:action="@{/productos/filtrar}" method="get"
+                            class="input-group shadow-sm rounded d-flex gap-1">
+                            <input class="form-control" type="search" name="filtro"
+                                placeholder="Buscar productos por nombre o categoría..." aria-label="Buscar productos"
+                                th:value="${param.filtro}" autocomplete="off" />
+                            <button
+                                class="btn btn-index d-flex justify-content-center align-items-center gap-2 px-3 py-lg-3 py-2"
+                                type="submit" title="Buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="productosLista">
-                <div th:each="p : ${productos}" class="col producto">
-                    <div class="card h-100 shadow-sm">
-                        <img th:src="@{'/imagenes/' + ${p.imagenProducto}}" class="card-img-top object-fit-cover"
-                            style="height: 400px; width: 100%;" th:alt="${p.nombreProducto}">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
-                            <p class="card-text" th:text="${p.descripcionProducto}"></p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0" th:text="'S/. ' + ${p.precioProducto}"></span>
-                                <button class="btn btn-index btn-sm" th:data-id="${p.idProducto}"
-                                    th:data-nombre="${p.nombreProducto}" th:data-precio="${p.precioProducto}">
-                                    <i class="bi bi-cart-plus"></i> Agregar
-                                </button>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="productosLista">
+                    <div th:each="p : ${productos}" class="col producto">
+                        <a th:href="@{'/productos/detalle/' + ${p.idProducto}}" style="text-decoration: none; color: inherit;">
+                            <div class="card h-100 shadow-sm">
+                                <img th:src="@{'/imagenes/' + ${p.imagenProducto}}"
+                                    class="card-img-top object-fit-cover" style="height: 400px; width: 100%;"
+                                    th:alt="${p.nombreProducto}">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold" th:text="${p.nombreProducto}"></h5>
+                                    <p class="card-text" th:text="${p.descripcionProducto}"></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="h5 mb-0" th:text="'S/. ' + ${p.precioProducto}"></span>
+                                        <button class="btn btn-index btn-sm" th:data-id="${p.idProducto}"
+                                            th:data-nombre="${p.nombreProducto}" th:data-precio="${p.precioProducto}">
+                                            <i class="bi bi-plus"></i> Ver detalles
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer th:replace="~{components/fragments :: footer}"></footer>
+        <footer th:replace="~{components/fragments :: footer}"></footer>
+    </section>
 </body>
 
 </html>
