@@ -1,0 +1,5 @@
+[phases.setup]
+workingDirectory = "shop"
+
+[start]
+cmd = "npm run dev"
