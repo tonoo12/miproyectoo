@@ -1,12 +1,16 @@
+[build]
+  base = "node"
+
 [phases.setup]
-nixPkgs = ["nodejs"]
-workingDirectory = "shop"
+  nixPkgs = ["nodejs"]
+  workingDirectory = "shop"
 
 [phases.install]
-cmds = ["npm install"]
+  cmds = ["npm install"]
 
 [phases.build]
-cmds = ["npm run build"]
+  cmds = ["npm run build"]
 
 [start]
-cmd = "npm run dev"
+  cmd = "npm run dev"
+  workingDirectory = "shop"
