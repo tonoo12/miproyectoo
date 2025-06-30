@@ -1,17 +1,26 @@
-const express = require('express');
+const http = require('http');
+const fs = require('fs');
 const path = require('path');
 
-const app = express();
 const PORT = process.env.PORT || 3000;
+const indexPath = path.join(__dirname, '../main/resources/templates/index.html');
 
-// Sirve archivos estáticos si tienes CSS, JS, imágenes, etc.
-app.use(express.static(path.join(__dirname, '../public')));
-
-// Redirige la ruta raíz a tu HTML
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'templates/index.html'));
+const server = http.createServer((req, res) => {
+  if (req.url === '/' || req.url === '/index.html') {
+    fs.readFile(indexPath, (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        return res.end('Error al cargar la página');
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+  } else {
+    res.writeHead(404);
+    res.end('Página no encontrada');
+  }
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor escuchando en puerto ${PORT}`);
 });
