@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const indexPath = path.join(__dirname, '../main/resources/templates/index.html');
+
+// Ruta corregida
+const indexPath = path.join(__dirname, 'main', 'resources', 'templates', 'index.html');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/' || req.url === '/index.html') {
@@ -12,12 +14,12 @@ const server = http.createServer((req, res) => {
         res.writeHead(500);
         return res.end('Error al cargar la página');
       }
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(data);
     });
   } else {
     res.writeHead(404);
-    res.end('Página no encontrada');
+    res.end('No encontrado');
   }
 });
 
