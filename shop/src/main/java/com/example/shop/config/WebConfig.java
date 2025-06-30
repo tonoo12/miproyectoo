@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    @SuppressWarnings("null")
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/inicio", "/");
@@ -26,9 +26,16 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // ✅ Para servir archivos estáticos desde /static/, /public/ (CSS, JS, imágenes internas, etc.)
+        registry.addResourceHandler("/**")
+                .addResourceLocations(
+                        "classpath:/static/",
+                        "classpath:/public/"
+                );
+
+        // ✅ Para servir imágenes desde una carpeta externa (por si las cargas desde fuera del proyecto)
         registry.addResourceHandler("/imagenes/**")
                 .addResourceLocations("file:" + System.getProperty("user.dir") + File.separator + "shop"
                         + File.separator + "imagenes" + File.separator);
     }
-
 }
