@@ -2,9 +2,9 @@
   "name": "miproyectoo",
   "version": "1.0.0",
   "description": "Proyecto Node.js básico con Express",
-  "main": "src/index.js",
+  "main": "shop/src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node shop/src/index.js"
   },
   "dependencies": {
     "express": "^4.18.2"
