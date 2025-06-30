@@ -1,8 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head th:replace="components/fragments :: cabecera('Toke Inka: La chispa que enciende tu estilo')"></head>
+<head>
+    <title>Toke Inka: La chispa que enciende tu estilo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
 
+        .hero {
+            background-color: #111;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .btn-index {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            background-color: #cf0018;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .container {
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .product button {
+            margin-top: 10px;
+            background-color: #cf0018;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 <body>
     <header th:replace="~{components/fragments :: header}"></header>
 
