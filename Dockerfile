@@ -1,11 +1,13 @@
-FROM node:18-alpine
+FROM node:18
 
-WORKDIR /app/shop
+WORKDIR /app
 
-COPY shop/package*.json ./
+COPY package*.json ./
 
 RUN npm install
 
-COPY shop ./
+COPY . .
 
-CMD ["node", "src/index.js"]
+EXPOSE 3000
+
+CMD ["npm", "start"]
