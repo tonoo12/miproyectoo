@@ -1,10 +1,10 @@
 {
   "name": "miproyectoo",
   "version": "1.0.0",
-  "description": "Proyecto Node.js básico",
-  "main": "src/index.js",
+  "description": "Proyecto Node.js básico con HTML",
+  "main": "shop/src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node shop/src/index.js"
   },
   "dependencies": {}
 }
